@@ -5,7 +5,6 @@ from sympy.physics.mechanics import dynamicsymbols
 import numpy as np
 import math
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 from mpl_toolkits.mplot3d import Axes3D
 theta1, L1, L2, L4, l2, l5, theta3, theta4, theta, alpha, a, d = sp.symbols('theta1, L1, L2, L4, l2, l5, theta3, theta4, theta, alpha, a, d')
 rot = sp.Matrix([[sp.cos(theta), -sp.sin(theta), 0],
@@ -54,35 +53,14 @@ for i in range(len(theta4)):                                                    
     px.append(leftarm_px(theta1, L1, L2, L4, l2, l5, theta3, theta4[i]))
     py.append(leftarm_py(theta1, L1, L2, L4, l2, l5, theta3, theta4[i]))
     pz.append(leftarm_pz(theta1, L1, L2, L4, l2, l5, theta3, theta4[i]))
-# print(px)
-# print(py)
-# print(pz)
-
-# py = np.array(leftarm_py(theta1, L1, L2, L4, l2, l5, theta3, theta4))
-# pz = np.array(leftarm_pz(theta1, L1, L2, L4, l2, l5, theta3, theta4))
-# plt.plot(px,py,pz)
-# plt.show()
 px = np.array(px)
 py = np.array(py)
 pz = np.array(pz)
-# def init():
-#     line.set_data([],[])
-#     line.set_3d_properties([])
-#     return line
-# def func(px,py,pz):
-#     x = px
-#     y = py
-#     z = pz
-#     line.set_data(x,y)
-#     line.set_3d_properties(z)
-#     return line
-# numDataPoints = len(theta4)
+
 fig = plt.figure()
 ax = Axes3D(fig)
 line = plt.plot(px,py,pz)
-# # line = ax.plot3D(px,py,pz,c='g')
 ax.set_xlim(-1000,1000); ax.set_ylim(-1000,1000); ax.set_zlim(0,1500);
-# line_ani = animation.FuncAnimation(fig,func,init_func=init,frames=numDataPoints, fargs=(px,py,pz), interval=50, blit=False)
 plt.savefig('wave.png')
 plt.show()
 
