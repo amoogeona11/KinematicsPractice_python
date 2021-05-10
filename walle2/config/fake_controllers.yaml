@@ -1,0 +1,28 @@
+controller_list:
+  - name: fake_leftarm_controller
+    joints:
+      - leftarm_prismatic
+      - leftarm_vertical_prismatic
+      - leftarm_rotx
+      - leftarm_rotz
+      - leftforearm_prismatic
+  - name: fake_rightarm_controller
+    joints:
+      - rightarm_prismatic
+      - rightarm_vertical_prismatic
+      - rightarm_rotx
+      - rightarm_rotz
+      - rightforearm_prismatic
+  - name: fake_lefthand_controller
+    joints:
+      - leftlowfinger
+      - leftupfinger
+  - name: fake_righthand_controller
+    joints:
+      - rightlowfinger
+      - rightupfinger
+initial:  # Define initial robot poses.
+  - group: leftarm
+    pose: leftdefault
+  - group: rightarm
+    pose: rightdefault

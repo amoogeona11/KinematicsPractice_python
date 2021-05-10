@@ -1,0 +1,211 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="wall-E">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="leftarm">
+        <joint name="leftarm_prismatic" />
+        <joint name="leftarm_vertical_prismatic" />
+        <joint name="leftarm_rotx" />
+        <joint name="leftarm_rotz" />
+        <joint name="leftforearm_prismatic" />
+        <joint name="left_wrist" />
+    </group>
+    <group name="rightarm">
+        <joint name="rightarm_prismatic" />
+        <joint name="rightarm_vertical_prismatic" />
+        <joint name="rightarm_rotx" />
+        <joint name="rightarm_rotz" />
+        <joint name="rightforearm_prismatic" />
+        <joint name="right_wrist" />
+    </group>
+    <group name="lefthand">
+        <link name="left_palm" />
+        <link name="left_lower_finger" />
+        <link name="left_upper_finger" />
+    </group>
+    <group name="righthand">
+        <link name="right_palm" />
+        <link name="right_lower_finger" />
+        <link name="right_upper_finger" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="leftdefault" group="leftarm">
+        <joint name="leftarm_prismatic" value="0" />
+        <joint name="leftarm_rotx" value="0" />
+        <joint name="leftarm_rotz" value="0" />
+        <joint name="leftarm_vertical_prismatic" value="0" />
+        <joint name="leftforearm_prismatic" value="0" />
+    </group_state>
+    <group_state name="rightdefault" group="rightarm">
+        <joint name="rightarm_prismatic" value="0" />
+        <joint name="rightarm_rotx" value="0" />
+        <joint name="rightarm_rotz" value="0" />
+        <joint name="rightarm_vertical_prismatic" value="0" />
+        <joint name="rightforearm_prismatic" value="0" />
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="left_hand" parent_link="left_palm" group="lefthand" />
+    <end_effector name="right_hand" parent_link="right_palm" group="righthand" />
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="wheel_base" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="body_base" link2="left_virtual_link" reason="Adjacent" />
+    <disable_collisions link1="body_base" link2="left_wheel" reason="Never" />
+    <disable_collisions link1="body_base" link2="leftjointcap0" reason="Never" />
+    <disable_collisions link1="body_base" link2="leftjointcap1" reason="Never" />
+    <disable_collisions link1="body_base" link2="rear_wheel" reason="Never" />
+    <disable_collisions link1="body_base" link2="rear_wheel_mount" reason="Never" />
+    <disable_collisions link1="body_base" link2="right_virtual_link" reason="Adjacent" />
+    <disable_collisions link1="body_base" link2="right_wheel" reason="Never" />
+    <disable_collisions link1="body_base" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="body_base" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="body_base" link2="wall_e_head" reason="Adjacent" />
+    <disable_collisions link1="body_base" link2="wheel_base" reason="Adjacent" />
+    <disable_collisions link1="left_lower_finger" link2="left_palm" reason="Adjacent" />
+    <disable_collisions link1="left_lower_finger" link2="left_virtual_link" reason="Never" />
+    <disable_collisions link1="left_lower_finger" link2="leftarm" reason="Never" />
+    <disable_collisions link1="left_lower_finger" link2="leftforearm" reason="Never" />
+    <disable_collisions link1="left_lower_finger" link2="leftjointcap0" reason="Never" />
+    <disable_collisions link1="left_lower_finger" link2="leftjointcap1" reason="Never" />
+    <disable_collisions link1="left_lower_finger" link2="rear_wheel" reason="Never" />
+    <disable_collisions link1="left_lower_finger" link2="right_lower_finger" reason="Never" />
+    <disable_collisions link1="left_lower_finger" link2="right_upper_finger" reason="Never" />
+    <disable_collisions link1="left_lower_finger" link2="right_virtual_link" reason="User" />
+    <disable_collisions link1="left_palm" link2="left_upper_finger" reason="Adjacent" />
+    <disable_collisions link1="left_palm" link2="left_virtual_link" reason="Never" />
+    <disable_collisions link1="left_palm" link2="leftarm" reason="Never" />
+    <disable_collisions link1="left_palm" link2="leftforearm" reason="Adjacent" />
+    <disable_collisions link1="left_palm" link2="leftjointcap0" reason="Never" />
+    <disable_collisions link1="left_palm" link2="leftjointcap1" reason="Never" />
+    <disable_collisions link1="left_palm" link2="right_virtual_link" reason="User" />
+    <disable_collisions link1="left_upper_finger" link2="left_virtual_link" reason="Never" />
+    <disable_collisions link1="left_upper_finger" link2="leftarm" reason="Never" />
+    <disable_collisions link1="left_upper_finger" link2="leftforearm" reason="Never" />
+    <disable_collisions link1="left_upper_finger" link2="leftjointcap0" reason="Never" />
+    <disable_collisions link1="left_upper_finger" link2="leftjointcap1" reason="Never" />
+    <disable_collisions link1="left_upper_finger" link2="right_lower_finger" reason="Never" />
+    <disable_collisions link1="left_upper_finger" link2="right_palm" reason="Never" />
+    <disable_collisions link1="left_upper_finger" link2="right_virtual_link" reason="User" />
+    <disable_collisions link1="left_virtual_link" link2="left_wheel" reason="Never" />
+    <disable_collisions link1="left_virtual_link" link2="leftarm" reason="Default" />
+    <disable_collisions link1="left_virtual_link" link2="leftforearm" reason="User" />
+    <disable_collisions link1="left_virtual_link" link2="leftjointcap0" reason="Adjacent" />
+    <disable_collisions link1="left_virtual_link" link2="leftjointcap1" reason="Never" />
+    <disable_collisions link1="left_virtual_link" link2="rear_wheel" reason="Never" />
+    <disable_collisions link1="left_virtual_link" link2="rear_wheel_mount" reason="Never" />
+    <disable_collisions link1="left_virtual_link" link2="right_lower_finger" reason="User" />
+    <disable_collisions link1="left_virtual_link" link2="right_palm" reason="User" />
+    <disable_collisions link1="left_virtual_link" link2="right_upper_finger" reason="User" />
+    <disable_collisions link1="left_virtual_link" link2="right_virtual_link" reason="Never" />
+    <disable_collisions link1="left_virtual_link" link2="right_wheel" reason="Never" />
+    <disable_collisions link1="left_virtual_link" link2="rightarm" reason="Never" />
+    <disable_collisions link1="left_virtual_link" link2="rightforearm" reason="User" />
+    <disable_collisions link1="left_virtual_link" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="left_virtual_link" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="left_virtual_link" link2="wall_e_head" reason="Never" />
+    <disable_collisions link1="left_virtual_link" link2="wheel_base" reason="Never" />
+    <disable_collisions link1="left_wheel" link2="leftjointcap0" reason="Never" />
+    <disable_collisions link1="left_wheel" link2="leftjointcap1" reason="Never" />
+    <disable_collisions link1="left_wheel" link2="rear_wheel" reason="Never" />
+    <disable_collisions link1="left_wheel" link2="rear_wheel_mount" reason="Never" />
+    <disable_collisions link1="left_wheel" link2="right_virtual_link" reason="Never" />
+    <disable_collisions link1="left_wheel" link2="right_wheel" reason="Never" />
+    <disable_collisions link1="left_wheel" link2="rightarm" reason="Never" />
+    <disable_collisions link1="left_wheel" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="left_wheel" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="left_wheel" link2="wall_e_head" reason="Never" />
+    <disable_collisions link1="left_wheel" link2="wheel_base" reason="Adjacent" />
+    <disable_collisions link1="leftarm" link2="leftforearm" reason="Adjacent" />
+    <disable_collisions link1="leftarm" link2="leftjointcap0" reason="Never" />
+    <disable_collisions link1="leftarm" link2="leftjointcap1" reason="Adjacent" />
+    <disable_collisions link1="leftarm" link2="rear_wheel" reason="Never" />
+    <disable_collisions link1="leftarm" link2="rear_wheel_mount" reason="Never" />
+    <disable_collisions link1="leftarm" link2="right_virtual_link" reason="Never" />
+    <disable_collisions link1="leftarm" link2="right_wheel" reason="Never" />
+    <disable_collisions link1="leftarm" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="leftarm" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="leftforearm" link2="leftjointcap0" reason="Never" />
+    <disable_collisions link1="leftforearm" link2="leftjointcap1" reason="Never" />
+    <disable_collisions link1="leftforearm" link2="right_virtual_link" reason="User" />
+    <disable_collisions link1="leftjointcap0" link2="leftjointcap1" reason="Adjacent" />
+    <disable_collisions link1="leftjointcap0" link2="rear_wheel" reason="Never" />
+    <disable_collisions link1="leftjointcap0" link2="rear_wheel_mount" reason="Never" />
+    <disable_collisions link1="leftjointcap0" link2="right_virtual_link" reason="Never" />
+    <disable_collisions link1="leftjointcap0" link2="right_wheel" reason="Never" />
+    <disable_collisions link1="leftjointcap0" link2="rightarm" reason="Never" />
+    <disable_collisions link1="leftjointcap0" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="leftjointcap0" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="leftjointcap0" link2="wall_e_head" reason="Never" />
+    <disable_collisions link1="leftjointcap0" link2="wheel_base" reason="Never" />
+    <disable_collisions link1="leftjointcap1" link2="rear_wheel" reason="Never" />
+    <disable_collisions link1="leftjointcap1" link2="rear_wheel_mount" reason="Never" />
+    <disable_collisions link1="leftjointcap1" link2="right_lower_finger" reason="Never" />
+    <disable_collisions link1="leftjointcap1" link2="right_virtual_link" reason="Never" />
+    <disable_collisions link1="leftjointcap1" link2="right_wheel" reason="Never" />
+    <disable_collisions link1="leftjointcap1" link2="rightarm" reason="Never" />
+    <disable_collisions link1="leftjointcap1" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="leftjointcap1" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="leftjointcap1" link2="wall_e_head" reason="Never" />
+    <disable_collisions link1="leftjointcap1" link2="wheel_base" reason="Never" />
+    <disable_collisions link1="rear_wheel" link2="rear_wheel_mount" reason="Adjacent" />
+    <disable_collisions link1="rear_wheel" link2="right_virtual_link" reason="Never" />
+    <disable_collisions link1="rear_wheel" link2="right_wheel" reason="Never" />
+    <disable_collisions link1="rear_wheel" link2="rightarm" reason="Never" />
+    <disable_collisions link1="rear_wheel" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="rear_wheel" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="rear_wheel" link2="wall_e_head" reason="Never" />
+    <disable_collisions link1="rear_wheel" link2="wheel_base" reason="Never" />
+    <disable_collisions link1="rear_wheel_mount" link2="right_virtual_link" reason="Never" />
+    <disable_collisions link1="rear_wheel_mount" link2="right_wheel" reason="Never" />
+    <disable_collisions link1="rear_wheel_mount" link2="rightarm" reason="Never" />
+    <disable_collisions link1="rear_wheel_mount" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="rear_wheel_mount" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="rear_wheel_mount" link2="wall_e_head" reason="Never" />
+    <disable_collisions link1="rear_wheel_mount" link2="wheel_base" reason="Adjacent" />
+    <disable_collisions link1="right_lower_finger" link2="right_palm" reason="Adjacent" />
+    <disable_collisions link1="right_lower_finger" link2="right_virtual_link" reason="Never" />
+    <disable_collisions link1="right_lower_finger" link2="rightarm" reason="Never" />
+    <disable_collisions link1="right_lower_finger" link2="rightforearm" reason="Never" />
+    <disable_collisions link1="right_lower_finger" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="right_lower_finger" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="right_palm" link2="right_upper_finger" reason="Adjacent" />
+    <disable_collisions link1="right_palm" link2="right_virtual_link" reason="Never" />
+    <disable_collisions link1="right_palm" link2="rightarm" reason="Never" />
+    <disable_collisions link1="right_palm" link2="rightforearm" reason="Adjacent" />
+    <disable_collisions link1="right_palm" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="right_palm" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="right_upper_finger" link2="right_virtual_link" reason="Never" />
+    <disable_collisions link1="right_upper_finger" link2="rightarm" reason="Never" />
+    <disable_collisions link1="right_upper_finger" link2="rightforearm" reason="Never" />
+    <disable_collisions link1="right_upper_finger" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="right_upper_finger" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="right_virtual_link" link2="right_wheel" reason="Never" />
+    <disable_collisions link1="right_virtual_link" link2="rightarm" reason="Default" />
+    <disable_collisions link1="right_virtual_link" link2="rightforearm" reason="User" />
+    <disable_collisions link1="right_virtual_link" link2="rightjointcap0" reason="Adjacent" />
+    <disable_collisions link1="right_virtual_link" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="right_virtual_link" link2="wall_e_head" reason="Never" />
+    <disable_collisions link1="right_virtual_link" link2="wheel_base" reason="Never" />
+    <disable_collisions link1="right_wheel" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="right_wheel" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="right_wheel" link2="wall_e_head" reason="Never" />
+    <disable_collisions link1="right_wheel" link2="wheel_base" reason="Adjacent" />
+    <disable_collisions link1="rightarm" link2="rightforearm" reason="Adjacent" />
+    <disable_collisions link1="rightarm" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="rightarm" link2="rightjointcap1" reason="Adjacent" />
+    <disable_collisions link1="rightforearm" link2="rightjointcap0" reason="Never" />
+    <disable_collisions link1="rightforearm" link2="rightjointcap1" reason="Never" />
+    <disable_collisions link1="rightjointcap0" link2="rightjointcap1" reason="Adjacent" />
+    <disable_collisions link1="rightjointcap0" link2="wall_e_head" reason="Never" />
+    <disable_collisions link1="rightjointcap0" link2="wheel_base" reason="Never" />
+    <disable_collisions link1="rightjointcap1" link2="wall_e_head" reason="Never" />
+    <disable_collisions link1="rightjointcap1" link2="wheel_base" reason="Never" />
+    <disable_collisions link1="wall_e_head" link2="wheel_base" reason="Never" />
+</robot>

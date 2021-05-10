@@ -1,0 +1,74 @@
+# joint_limits.yaml allows the dynamics properties specified in the URDF to be overwritten or augmented as needed
+# Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]
+# Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
+joint_limits:
+  leftarm_prismatic:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  leftarm_rotx:
+    has_velocity_limits: true
+    max_velocity: 360
+    has_acceleration_limits: false
+    max_acceleration: 0
+  leftarm_rotz:
+    has_velocity_limits: true
+    max_velocity: 360
+    has_acceleration_limits: false
+    max_acceleration: 0
+  leftarm_vertical_prismatic:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  leftforearm_prismatic:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  leftlowfinger:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  leftupfinger:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rightarm_prismatic:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rightarm_rotx:
+    has_velocity_limits: true
+    max_velocity: 360
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rightarm_rotz:
+    has_velocity_limits: true
+    max_velocity: 360
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rightarm_vertical_prismatic:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rightforearm_prismatic:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rightlowfinger:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rightupfinger:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
