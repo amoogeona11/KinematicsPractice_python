@@ -1,0 +1,493 @@
+<?xml version="1.0"?>
+<robot name="wall-E">
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <link name="wheel_base">
+    <visual>
+      <geometry>
+        <box size="0.8 1 0.2"/>
+      </geometry>
+      <origin xyz="0 0 0"/>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.8 1 0.2"/>
+      </geometry>
+      <origin xyz="0 0 0"/>
+    </collision>
+  </link>
+  <link name="left_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="-0.05 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="-0.05 0 0"/>
+    </collision>
+  </link>
+  <link name="right_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0.05 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0.05 0 0"/>
+    </collision>
+  </link>
+  <link name="body_base">
+    <visual>
+      <geometry>
+        <box size="0.8 0.8 0.8"/>
+      </geometry>
+      <material name="blue"/>
+      <origin xyz="0 0 0.5"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.8 0.8 0.8"/>
+      </geometry>
+      <origin xyz="0 0 0.5"/>
+    </collision>
+  </link>
+  <link name="rear_wheel_mount">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.05"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 -0.075"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.02" radius="0.05"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 -0.075"/>
+    </collision>
+  </link>
+  <link name="rear_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.04"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.02" radius="0.04"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0 0"/>
+    </collision>
+  </link>
+  <link name="left_virtual_link">
+    <visual>
+      <geometry>
+        <box size="0.01 0.05 0.05"/>
+      </geometry>
+      <origin xyz="0.015 -0.25 -0.1"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.01 0.05 0.05"/>
+      </geometry>
+      <origin xyz="0.015 -0.25 -0.1"/>
+    </collision>
+  </link>
+  <link name="right_virtual_link">
+    <visual>
+      <geometry>
+        <box size="0.01 0.05 0.05"/>
+      </geometry>
+      <origin xyz="-0.015 -0.25 -0.1"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.01 0.05 0.05"/>
+      </geometry>
+      <origin xyz="-0.015 -0.25 -0.1"/>
+    </collision>
+  </link>
+  <link name="leftjointcap0">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.025"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0.3 -0.05"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.025"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0.3 -0.05"/>
+    </collision>
+  </link>
+  <link name="rightjointcap0">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.025"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0.3 -0.05"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.025"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0.3 -0.05"/>
+    </collision>
+  </link>
+  <link name="leftjointcap1">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.025"/>
+      </geometry>
+      <origin xyz="0.08 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.025"/>
+      </geometry>
+      <origin xyz="0.08 0 0"/>
+    </collision>
+  </link>
+  <link name="rightjointcap1">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.025"/>
+      </geometry>
+      <origin xyz="-0.08 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.025"/>
+      </geometry>
+      <origin xyz="-0.08 0 0"/>
+    </collision>
+  </link>
+  <link name="leftarm">
+    <visual>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/arm.dae"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 -0.28 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/arm.dae"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 -0.28 0"/>
+    </collision>
+  </link>
+  <link name="rightarm">
+    <visual>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/arm.dae"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 -0.28 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/arm.dae"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 -0.28 0"/>
+    </collision>
+  </link>
+  <link name="leftforearm">
+    <visual>
+      <geometry>
+        <cylinder length="0.5" radius="0.035"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 -0.3 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.5" radius="0.035"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 -0.3 0"/>
+    </collision>
+  </link>
+  <link name="rightforearm">
+    <visual>
+      <geometry>
+        <cylinder length="0.5" radius="0.035"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 -0.3 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.5" radius="0.035"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 -0.3 0"/>
+    </collision>
+  </link>
+  <link name="left_palm">
+    <visual>
+      <geometry>
+        <box size="0.1 0.02 0.25"/>
+      </geometry>
+      <origin xyz="0 0.025 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.02 0.25"/>
+      </geometry>
+      <origin xyz="0 0.025 0"/>
+    </collision>
+  </link>
+  <link name="right_palm">
+    <visual>
+      <geometry>
+        <box size="0.1 0.02 0.25"/>
+      </geometry>
+      <origin xyz="0 0.025 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.02 0.25"/>
+      </geometry>
+      <origin xyz="0 0.025 0"/>
+    </collision>
+  </link>
+  <link name="left_lower_finger">
+    <visual>
+      <geometry>
+        <box size="0.1 0.15 0.02"/>
+      </geometry>
+      <origin xyz="0 -0.075 -0.1"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.15 0.02"/>
+      </geometry>
+      <origin xyz="0 -0.075 -0.1"/>
+    </collision>
+  </link>
+  <link name="right_lower_finger">
+    <visual>
+      <geometry>
+        <box size="0.1 0.15 0.02"/>
+      </geometry>
+      <origin xyz="0 -0.075 -0.1"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.15 0.02"/>
+      </geometry>
+      <origin xyz="0 -0.075 -0.1"/>
+    </collision>
+  </link>
+  <link name="left_upper_finger">
+    <visual>
+      <geometry>
+        <box size="0.1 0.15 0.02"/>
+      </geometry>
+      <origin xyz="0 -0.075 0.075"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.15 0.02"/>
+      </geometry>
+      <origin xyz="0 -0.075 0.075"/>
+    </collision>
+  </link>
+  <link name="right_upper_finger">
+    <visual>
+      <geometry>
+        <box size="0.1 0.15 0.02"/>
+      </geometry>
+      <origin xyz="0 -0.075 0.075"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.15 0.02"/>
+      </geometry>
+      <origin xyz="0 -0.075 0.075"/>
+    </collision>
+  </link>
+  <link name="wall_e_head">
+    <visual>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/head.dae"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 0 0.52"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/head.dae"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 0 0.52"/>
+    </collision>
+  </link>
+
+
+  <joint name="left_wheel_motor" type='fixed'>
+    <parent link="wheel_base"/>
+    <child link="left_wheel"/>
+    <axis xyz="-1 0 0"/>
+    <origin rpy="0 0 0" xyz="0.525 -0.25 -0.05"/>
+    <limit effort="1.00e+11" velocity="5"/> 
+  </joint>
+  <joint name="right_wheel_motor" type='fixed'>
+    <parent link="wheel_base"/>
+    <child link="right_wheel"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="-0.525 -0.25 -0.05"/>
+    <limit effort="1.00e+11" velocity="5"/> 
+  </joint>
+  <joint name="body_connect" type='fixed'>
+    <parent link="wheel_base"/>
+    <child link="body_base"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <joint name="rear_wheel_joint" type='fixed'>
+    <parent link="wheel_base"/>
+    <child link="rear_wheel_mount"/>
+    <origin rpy="0 0 0" xyz="0 0.425 -0.075"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0" velocity="1.00e+10"/> 
+  </joint>
+  <joint name="rear_wheel_axis" type='fixed'>
+    <parent link="rear_wheel_mount"/>
+    <child link="rear_wheel"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="0 0.025 -0.135"/>
+    <limit effort="0" velocity="1.00e+10"/> 
+  </joint>
+  <joint name="leftarm_prismatic" type='prismatic'>
+    <parent link="body_base"/>
+    <child link="left_virtual_link"/>
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.41 0 0.75"/>
+    <limit effort="5e+4" velocity="1" lower="-0.4" upper="0.4"/> 
+  </joint>
+  <joint name="rightarm_prismatic" type='prismatic'>
+    <parent link="body_base"/>
+    <child link="right_virtual_link"/>
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="-0.41 0 0.75"/>
+    <limit effort="5e+4" velocity="1" lower="-0.4" upper="0.4"/> 
+  </joint>
+  <joint name="leftarm_vertical_prismatic" type='prismatic'>
+    <parent link="left_virtual_link"/>
+    <child link="leftjointcap0"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0.015 -0.3 0.05"/>
+    <limit effort="5e+4" velocity="1" lower="-0.5" upper="0"/> 
+  </joint>
+  <joint name="rightarm_vertical_prismatic" type='prismatic'>
+    <parent link="right_virtual_link"/>
+    <child link="rightjointcap0"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="-0.015 -0.3 0.05"/>
+    <limit effort="5e+4" velocity="1" lower="-0.5" upper="0"/> 
+  </joint>
+  <joint name="leftarm_rotx" type='revolute'>
+    <parent link="leftjointcap0"/>
+    <child link="leftjointcap1"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="-0.005 0.3 -0.05"/>
+    <limit effort="5e+3" velocity="360" lower="-3.14" upper="3.14"/> 
+  </joint>
+  <joint name="rightarm_rotx" type='revolute'>
+    <parent link="rightjointcap0"/>
+    <child link="rightjointcap1"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="0.005 0.3 -0.05"/>
+    <limit effort="5e+3" velocity="360" lower="-3.14" upper="3.14"/> 
+  </joint>
+  <joint name="leftarm_rotz" type='revolute'>
+    <parent link="leftjointcap1"/>
+    <child link="leftarm"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0.08 0 0"/>
+    <limit effort="5e+3" velocity="360" lower="-3.14" upper="3.14"/> 
+  </joint>
+  <joint name="rightarm_rotz" type='revolute'>
+    <parent link="rightjointcap1"/>
+    <child link="rightarm"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="-0.08 0 0"/>
+    <limit effort="5e+3" velocity="360" lower="-3.14" upper="3.14"/> 
+  </joint>
+  <joint name="leftforearm_prismatic" type='prismatic'>
+    <parent link="leftarm"/>
+    <child link="leftforearm"/>
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.5 0"/>
+    <limit effort="1e+3" velocity="1" lower="-0.2" upper="0.2"/> 
+  </joint>
+  <joint name="rightforearm_prismatic" type='prismatic'>
+    <parent link="rightarm"/>
+    <child link="rightforearm"/>
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.5 0"/>
+    <limit effort="1e+3" velocity="1" lower="-0.2" upper="0.2"/> 
+  </joint>
+  <joint name="left_wrist" type='fixed'>
+    <parent link="leftforearm"/>
+    <child link="left_palm"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.6 0"/>
+    <limit effort="0" velocity="1000"/> 
+  </joint>
+  <joint name="right_wrist" type='fixed'>
+    <parent link="rightforearm"/>
+    <child link="right_palm"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.6 0"/>
+    <limit effort="0" velocity="1000"/> 
+  </joint>
+  <joint name="leftupfinger" type='prismatic'>
+    <parent link="left_palm"/>
+    <child link="left_upper_finger"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0 0 0.075"/>
+    <limit effort="1e+3" velocity="1" lower="-0.15" upper="0"/> 
+  </joint>
+  <joint name="rightupfinger" type='prismatic'>
+    <parent link="right_palm"/>
+    <child link="right_upper_finger"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0 0 0.075"/>
+    <limit effort="1e+3" velocity="1" lower="-0.15" upper="0"/> 
+  </joint>
+  <joint name="leftlowfinger" type='prismatic'>
+    <parent link="left_palm"/>
+    <child link="left_lower_finger"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.05"/>
+    <limit effort="1e+3" velocity="1" lower="0" upper="0.15"/> 
+  </joint>
+  <joint name="rightlowfinger" type='prismatic'>
+    <parent link="right_palm"/>
+    <child link="right_lower_finger"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.05"/>
+    <limit effort="1e+3" velocity="1" lower="0" upper="0.15"/> 
+  </joint>
+  <joint name="head" type='revolute'>
+    <parent link="body_base"/>
+    <child link="wall_e_head"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0 0 0.8"/>
+    <limit effort="1e+3" velocity="1" lower="-3.14" upper="3.14"/> 
+  </joint>
+
+
+</robot>
